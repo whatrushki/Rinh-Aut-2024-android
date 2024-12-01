@@ -35,6 +35,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import app.what.foundation.services.ProvideGlobalSheet
 import app.what.main.children.level.navigation.LevelProvider
 import app.what.main.children.level.presentation.LevelFeature
 import java.util.UUID
@@ -45,9 +46,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 //            CodeCadetTheme {
-
-            val some = remember { LevelFeature(LevelProvider) }
-            some.content(Modifier)
+            ProvideGlobalSheet {
+                val some = remember { LevelFeature(LevelProvider) }
+                some.content(Modifier)
+            }
         }
 //            }
     }

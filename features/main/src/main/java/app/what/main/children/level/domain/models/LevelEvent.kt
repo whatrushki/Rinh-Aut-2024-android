@@ -4,8 +4,6 @@ sealed interface LevelEvent {
     data object Init : LevelEvent
     data class CellClicked(val x: Int, val y: Int) : LevelEvent
 
-    data object MoveRight : LevelEvent
-    data object MoveUp : LevelEvent
-    data object MoveDown : LevelEvent
-    data object MoveLeft : LevelEvent
+    data object StartSimulation : LevelEvent
+    data object StopSimulation : LevelEvent
 }

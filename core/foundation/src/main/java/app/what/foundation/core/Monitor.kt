@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+fun <T : Any?> monitored(initValue: T) = Monitor(initValue)
+
 class Monitor<T : Any?>(initValue: T) : ReadWriteProperty<Any?, T> {
     companion object {
         fun <T : Any?> monitored(initValue: T) = Monitor(initValue)

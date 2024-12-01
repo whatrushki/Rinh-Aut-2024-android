@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import app.what.foundation.core.Feature
 import app.what.main.children.level.domain.LevelController
+import app.what.main.children.level.domain.game.CommonCommands
 import app.what.main.children.level.domain.game.LevelRef
 import app.what.main.children.level.domain.game.Point
 import app.what.main.children.level.domain.game.gameBoard
@@ -20,6 +21,7 @@ class LevelFeature(
     NavComponent<LevelProvider>,
     KoinComponent {
     private val board = gameBoard {
+        hint("Подсказки для уровня")
         size(5, 6)
         start(0, 0)
         hero(2, 2)
@@ -40,6 +42,16 @@ class LevelFeature(
         exits {
             this[Point(3, 3)] = LevelRef(7, 1)
             this[Point(5, 0)] = LevelRef(7, 3)
+        }
+
+        commands {
+            listOf(
+                CommonCommands.moveRight(it),
+                CommonCommands.moveUp(it),
+                CommonCommands.moveLeft(it),
+                CommonCommands.moveDown(it),
+                CommonCommands.forCycle(it),
+            )
         }
     }
 

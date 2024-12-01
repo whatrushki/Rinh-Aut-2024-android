@@ -1,6 +1,8 @@
 package app.what.main.children.level.domain.game
 
+import app.what.foundation.core.monitored
 import app.what.main.children.level.domain.models.GameResult
+import app.what.main.children.level.domain.models.GameStyle
 
 
 data class GameBoard(
@@ -8,15 +10,21 @@ data class GameBoard(
     val exits: Map<Point, LevelRef>,
     val hero: Hero,
     val grid: List<List<CellType>>,
-    val collectedGems: List<CellType.Entity.Gem> = emptyList()
+    val style: GameStyle,
+    val availableCommandsBuilder: (CommandBoardManager) -> List<Command<*>>,
+    val maxCommandsCount: Int = 0,
+    val collectedGems: List<CellType.Entity.Gem> = emptyList(),
+    val hint: String = ""
 ) {
+    var availableCommands: List<Command<*>> by monitored(emptyList())
+
     fun gameResult(): GameResult? = when {
         exits.containsKey(hero.position) -> GameResult.Finished
         hero.hp <= 0 -> GameResult.Defeated
         else -> null
     }
 
-    fun printBoard(hero: Hero): String {
+    fun printBoard(): String {
         var result = ""
 
         for ((y, row) in grid.withIndex()) {

@@ -29,6 +29,22 @@ import app.what.main.children.level.domain.models.LevelState
 const val DefaultGameUnitSize = 20
 const val DefaultGameGapWidth = 1
 
+//for ((y, row) in grid.withIndex()) {
+//    for ((x, cell) in row.withIndex()) {
+//        val ui = when {
+//            hero.position.x == x && hero.position.y == y -> "H"
+//            Point(x, y) in exits -> "II"
+//            cell is CellType.Entity.Enemy && !cell.hidden && !cell.defeated -> "E"
+//            cell is CellType.Entity.Gem && !cell.hidden && !cell.collected -> "*"
+//            cell is CellType.Entity.Obstacle -> "#"
+//            Point(x, y) == start -> "II"
+//            else -> "."
+//        }
+//        print("$ui ")
+//    }
+//    println()
+//}
+
 @Composable
 fun GridForGame(
     state: LevelState,
